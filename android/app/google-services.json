@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "736041323461",
+    "project_id": "flash-chat-8171b",
+    "storage_bucket": "flash-chat-8171b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736041323461:android:c0e4bdd426053a96ddd9ac",
+        "android_client_info": {
+          "package_name": "com.berzeninfylyp.flash_chat_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736041323461-u708binragf5gi1j9ncji3mffbkst8q6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ5ZpN74f6eG8ENNwe9oYf_R8IAFoZO3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736041323461-u708binragf5gi1j9ncji3mffbkst8q6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736041323461:android:0833bdc6a2dc5c50ddd9ac",
+        "android_client_info": {
+          "package_name": "com.example.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736041323461-u708binragf5gi1j9ncji3mffbkst8q6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ5ZpN74f6eG8ENNwe9oYf_R8IAFoZO3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736041323461-u708binragf5gi1j9ncji3mffbkst8q6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
