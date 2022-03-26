@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/services/common.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,15 +20,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: new AppBar(
-      //   backgroundColor: Colors.white,
-      //   leading: new IconButton(
-      //       icon: new Icon(Icons.arrow_back),
-      //       color: Colors.black,
-      //       onPressed: () {
-      //         Navigator.pop(context, true);
-      //       }),
-      // ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -72,28 +63,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 24.0,
             ),
             RoundedButtom(
-              text: 'Register',
-              color: Colors.blueAccent,
-              onPressed: () async {
-                try {
-                  UserCredential userCredential = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                    email: email,
-                    password: password,
-                  );
-                } on FirebaseAuthException catch (e) {
-                  if (e.code == 'weak-password') {
-                    print('The password provided is too weak.');
-                  } else if (e.code == 'email-already-in-use') {
-                    print('The account already exists for that email.');
+                text: 'Register',
+                color: Colors.blueAccent,
+                onPressed: () async {
+                  try {
+                    final UserCredential userCredential =
+                        await _auth.createUserWithEmailAndPassword(
+                      email: email,
+                      password: password,
+                    );
+                    if (userCredential != null) {
+                      Navigator.pushNamed(context, ChatScreen.id);
+                    }
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                      print('The password provided is too weak.');
+                    } else if (e.code == 'email-already-in-use') {
+                      print('The account already exists for that email.');
+                    }
+                  } catch (e) {
+                    print(e);
                   }
-                } catch (e) {
-                  print(e);
-                }
-                // Navigator.pushNamed(
-                //     context, LoginScreen.id); //Go to registration screen.
-              },
-            ),
+                }),
           ],
         ),
       ),

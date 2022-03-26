@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/services/common.dart';
 
 import '../constants.dart';
+import 'chat_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = "/login_screen";
@@ -11,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
 
@@ -36,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Hero(
               tag: 'logo',
               child: Container(
-                height: 200.0,
+                height: 100.0,
                 child: Image.asset('images/logo.png'),
               ),
             ),
@@ -72,9 +75,23 @@ class _LoginScreenState extends State<LoginScreen> {
             RoundedButtom(
               text: 'Log in',
               color: Colors.lightBlueAccent,
-              onPressed: () {
-                print(email);
-                print(password);
+              onPressed: () async {
+                try {
+                  UserCredential userCredential =
+                      await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                  if (userCredential != null) {
+                    Navigator.pushNamed(context, ChatScreen.id);
+                  }
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'user-not-found') {
+                    print('No user found for that email.');
+                  } else if (e.code == 'wrong-password') {
+                    print('Wrong password provided for that user.');
+                  }
+                }
+                // print(email);
+                // print(password);
                 // Navigator.pushNamed(
                 //     context, LoginScreen.id); //Go to registration screen.
               },
